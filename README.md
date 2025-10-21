@@ -1,1 +1,24 @@
 # c320_config
+
+Conf t
+gpon
+profile tcont client type 5 fixed 1024 assured 1024 maximum 1024000
+!
+pon
+onu-type ALL gpon max-tcont 16 max-gemport 16 max-switch-perslot 255 max-flow-perswitch 255 max-iphost 2 service-ability N:1 support 1:M support 1:P support
+!
+ip route 0.0.0.0 0.0.0.0 172.16.16.1 1
+!
+interface gei_1/19/4 (ubah sesuai interface uplink)
+switchport mode hybrid
+switchport vlan 99 tag
+switchport vlan 100 tag
+switchport vlan 150 tag
+switchport vlan 151 tag
+switchport vlan 152 tag
+!
+interface vlan 99
+ip address 172.16.16.20 255.255.255.0
+!
+end
+write
